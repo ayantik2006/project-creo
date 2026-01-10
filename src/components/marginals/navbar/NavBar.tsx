@@ -28,7 +28,7 @@ function NavBar() {
     <>
       {/* Mobile Menu Overlay */}
       <nav
-        className={`fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center space-y-8 lmd:hidden transition-all duration-300 ease-in-out  ${
+        className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center space-y-8 lmd:hidden transition-all duration-300 ease-in-out  ${
           isMenuOpen
             ? 'opacity-100 visible pointer-events-auto'
             : 'opacity-0 invisible pointer-events-none'
@@ -88,7 +88,7 @@ function NavBar() {
         </div>
       </div>
 
-      <div className='fixed top-0 left-0 right-0 flex lmd:hidden items-center justify-between w-full p-4 pointer-events-auto z-60 flex-1  bg-black/20 backdrop-blur-sm border border-white/10 px-6 min-h-[71px]'>
+      <div className='fixed top-0 left-0 right-0 flex lmd:hidden items-center justify-between w-full p-4 pointer-events-auto z-60 flex-1 px-6'>
         <div className='size-[40px] flex items-center justify-center shrink-0'>
           <img
             src={logos.CreoMobileLogo}
@@ -103,9 +103,9 @@ function NavBar() {
           aria-label='Toggle menu'
         >
           <div
-            className={`transition-transform duration-300 ease-in-out ${isMenuOpen ? 'rotate-90' : 'rotate-0'}`}
+            className={`transition-transform duration-300 ease-in-out bg-black p-2 rounded-sm ${isMenuOpen ? 'rotate-90' : 'rotate-0'}`}
           >
-            {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
+            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </div>
         </button>
       </div>
