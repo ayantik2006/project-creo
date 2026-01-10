@@ -13,6 +13,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   const { progress: current3DProgress } = useProgress()
   const [imagesLoaded, setImagesLoaded] = useState(false)
   const [imgProgress, setImgProgress] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+  }, [])
 
   useEffect(() => {
     const imageUrls = [...Object.values(imgs), ...Object.values(logos)].filter(
@@ -49,10 +54,12 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   }, [])
 
   useEffect(() => {
-    const totalProgress = Math.min(Math.round((imgProgress + current3DProgress) / 2), 100)
+    // On mobile, we don't load 3D content, so treat 3D progress as 100%
+    const effective3DProgress = isMobile ? 100 : current3DProgress
+    const totalProgress = Math.min(Math.round((imgProgress + effective3DProgress) / 2), 100)
 
     setProgress(totalProgress)
-  }, [imgProgress, current3DProgress])
+  }, [imgProgress, current3DProgress, isMobile])
 
   useEffect(() => {
     if (progress === 100 && imagesLoaded) {

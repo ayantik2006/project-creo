@@ -2,7 +2,7 @@ import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { EffectComposer } from '@react-three/postprocessing'
 import { VhsGlitchEffect } from './vhs-glitch-effext'
 import { useTexture } from '@react-three/drei'
-import { Suspense, useRef, useEffect } from 'react'
+import { Suspense, useRef, useEffect, useState } from 'react'
 import type { RefObject } from 'react'
 
 const mouseState = { x: 0, y: 0, targetX: 0, targetY: 0 }
@@ -49,8 +49,19 @@ interface EffectSceneProps {
 }
 
 export function EffectScene({ image, heroRef }: EffectSceneProps) {
+  const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
-    if (!heroRef?.current) return
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile || !heroRef?.current) return
 
     const heroElement = heroRef.current
 
@@ -60,7 +71,6 @@ export function EffectScene({ image, heroRef }: EffectSceneProps) {
     }
 
     const handleMouseLeave = () => {
-      // Reset target to center when mouse leaves
       mouseState.targetX = 0
       mouseState.targetY = 0
     }
@@ -72,7 +82,16 @@ export function EffectScene({ image, heroRef }: EffectSceneProps) {
       heroElement.removeEventListener('mousemove', handleMouseMove)
       heroElement.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [heroRef])
+  }, [heroRef, isMobile])
+
+  if (isMobile) {
+    return (
+      <div className='absolute inset-0 z-0 w-full h-full pointer-events-none bg-black'>
+        <img src={image} alt='' className='w-full h-full object-cover' />
+        <div className='absolute inset-0 z-10 w-full h-full bg-black opacity-20 pointer-events-none' />
+      </div>
+    )
+  }
 
   return (
     <div className='absolute inset-0 z-0 w-full h-full pointer-events-none'>
