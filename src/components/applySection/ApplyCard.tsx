@@ -1,6 +1,7 @@
 import { Button } from '../ui/button'
 import { H4, P } from '../ui/typography'
 import Line from './Line'
+import { registerFn } from '@/utils/registerFn'
 
 interface cardProps {
   heading: string
@@ -11,10 +12,7 @@ interface cardProps {
   onHover: () => void
 }
 
-const handleEarlyRegistration = async () => {}
-const handleRegularRegistration = async () => {}
-
-function ApplyCard({ heading, tillDate, price, registrationType, isActive, onHover }: cardProps) {
+function ApplyCard({ heading, tillDate, price, isActive, onHover }: cardProps) {
   return (
     <div
       className={`relative flex flex-col flex-wrap text-white h-full md:h-[270px] transition-all duration-500 ease-in-out z-40 overflow-hidden rounded-[13px] backdrop-blur-sm ${
@@ -49,9 +47,7 @@ function ApplyCard({ heading, tillDate, price, registrationType, isActive, onHov
         </div>
         <Button
           className='self-start bg-black mt-10 px-5 py-5 border cursor-pointer hover:bg-zinc-900 transition-colors rounded-none text-[1.15rem]'
-          onClick={
-            registrationType === 'Early' ? handleEarlyRegistration : handleRegularRegistration
-          }
+          onClick={registerFn}
         >
           Register now
         </Button>

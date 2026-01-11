@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { NAV_LINKS } from '@/config/marginals'
 import logos from '@/config/logo'
 import { Menu, X } from 'lucide-react'
+import { registerFn } from '@/utils/registerFn'
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -85,7 +86,10 @@ function NavBar() {
             </a>
           </Button>
         ))}
-        <Button className='bg-pink-600 hover:bg-pink-700 text-black rounded-none px-8 py-6 text-xl'>
+        <Button
+          className='bg-pink-600 hover:bg-pink-700 text-black rounded-none px-8 py-6 text-xl'
+          onClick={registerFn}
+        >
           Register Now
         </Button>
       </nav>
@@ -124,7 +128,10 @@ function NavBar() {
             </nav>
           </div>
           {/* Right: Registration Button */}
-          <Button className='bg-[#ff00bf] hover:opacity/80 text-black font-bold text-lg rounded-none w-[200px] h-[70px] px-[36px] py-[28px] flex items-center justify-center shrink-0'>
+          <Button
+            className='bg-[#ff00bf] hover:opacity/80 text-black font-bold text-lg rounded-none w-[200px] h-[70px] px-[36px] py-[28px] flex items-center justify-center shrink-0'
+            onClick={registerFn}
+          >
             Register Now
           </Button>
         </div>

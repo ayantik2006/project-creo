@@ -154,7 +154,7 @@ function Hero() {
 
       <div
         ref={contentRef}
-        className='relative z-30 flex flex-col items-center justify-between w-full min-h-screen px-4 overflow-y-auto md:overflow-hidden transition-transform duration-100 ease-out pointer-events-none lmd:pt-0 pt-32'
+        className='relative z-30 flex flex-col items-center justify-between w-full min-h-screen px-4 overflow-y-auto md:overflow-hidden transition-transform duration-100 ease-out pointer-events-none lmd:pt-0 pt-20'
       >
         <HeroHeader />
         <HeroTitle />

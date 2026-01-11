@@ -44,7 +44,7 @@ const ContactInfo = () => {
           />
         </div>
         <div>
-          <Small className='font-gabarito text-base'>
+          <Small className='font-gabarito text-sm md:text-base'>
             <a href={footerData.dsc} target='_blank' rel='noreferrer' className='group'>
               Made with <span className='px-[0.1rem]'>❤️</span> by{' '}
               <span className='group-hover:underline underline-offset-4'>DSC NIT Rourkela</span>

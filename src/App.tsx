@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ReactLenis } from 'lenis/react'
 import GlobalLoader from './components/ui/GlobalLoader'
 import SEO from './components/seo/SEO'
+import { Toaster } from './components/ui/sonner'
 
 const TypographyPage = lazy(() => import('./pages/TypographyPage'))
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -13,6 +14,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 function App() {
   return (
     <>
+      <Toaster position='top-center' richColors />
       <Router>
         <SEO />
         <ReactLenis

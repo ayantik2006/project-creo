@@ -1,15 +1,21 @@
+import { memo } from 'react'
 import { bg } from '@/config/about'
 import { motion, MotionValue } from 'framer-motion'
+import { useIsMobile } from '@/lib/useIsMobile'
 
 interface AboutBackgroundProps {
   y: MotionValue<string>
 }
 
-export const AboutBackground = ({ y }: AboutBackgroundProps) => {
+export const AboutBackground = memo(({ y }: AboutBackgroundProps) => {
+  const isMobile = useIsMobile()
+
+  const style = isMobile ? {} : { y, willChange: 'transform' as const }
+
   return (
     <motion.div
-      style={{ y }}
-      className='absolute inset-0 z-0 pointer-events-none overflow-hidden h-screen'
+      style={style}
+      className='absolute inset-0 z-0 pointer-events-none overflow-hidden h-screen '
     >
       <img
         alt='Background'
@@ -19,4 +25,4 @@ export const AboutBackground = ({ y }: AboutBackgroundProps) => {
       <div className='absolute inset-0 bg-linear-to-b from-black via-transparent to-black opacity-90' />
     </motion.div>
   )
-}
+})
